@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+  <title>about us</title>
+</head>
+<style>
+@import url('https://fonts.googleapis.com/css?family=EB+Garamond|Oswald');
+*{
+    margin: 0;
+    padding: 0;
+    outline: 0;
+}
+body 
+{
+    scrollbar-color: black;
+}
+::-webkit-scrollbar 
+{
+    width: 6px;
+}
+::-webkit-scrollbar-track 
+{
+    /* box-shadow: inset 0 0 5px grey;  */
+    border-radius: 10px;
+    background: black;
+}
+::-webkit-scrollbar-thumb 
+{
+    background-color: #FFD700; 
+    border-radius: 40px;
+}
+::-webkit-scrollbar-thumb:hover 
+{
+    background-color: #FFD700;
+}
+.topnav 
+{
+ background-color: rgba(0,0,0);
+ overflow: hidden;
+ position: fixed;
+ width: 100%;
+ top:0;
+}
+.topnav a 
+{
+ float: left;
+ color: #FFD700;
+ text-align: left;
+ padding: 14px 16px;
+ text-decoration: none;
+ font-size: 17px;
+ font-family: 'Oswald', sans-serif;
+}
+.topnav a:hover 
+{
+ background-color: #FFD700;
+ color: black;
+}
+.topnav-right 
+{
+  float: right;
+}
+.topnav-right a
+{
+  color: #FFFACD;
+}
+.topnav a.active 
+{
+ background-color: #FFD700;
+ color: black;
+}
+.parallax1, .parallax2, .parallax3, .parallax4, .parallax5 
+{
+ background-image: url('{% static '/images/parallax1.jpg' %}');
+ background-attachment: fixed;
+ background-position: center;
+ background-repeat: no-repeat;
+ background-size: cover;
+ min-height: 400px;
+}
+.parallax1 
+{
+  z-index: 4;
+}
+.parallax2 
+{
+ background-image: url('{% static '/images/parallax2.jpg' %}');
+ min-height: 400px;
+}
+.parallax3 
+{
+ background-image: url('{% static '/images/parallax3.jpg' %}');
+ min-height: 400px;
+}
+.parallax4 
+{
+ background-image: url('https://media.giphy.com/media/1msBkwznONpplB2zFu/giphy.gif');
+ min-height: 350px;
+}
+.parallax5 
+{
+ background-image: url('{% static '/images/parallax5.jpg' %}');
+ min-height: 300px;
+}
+.text1, .text2, .text3, .text4, .text5
+{
+ background-color: rgba(0,0,0,0.1);
+ height: 400px;
+ padding-left: 5em;
+ padding-right: 5em;
+ padding-top: 2em;
+ border: 3px solid yellow;
+}
+.text2 
+{
+ height: 550px;
+ background-color: yellow;
+}
+.text3 
+{
+ height: 500px;
+}
+.text4
+{
+ height: 250px;
+ background-color: yellow;
+}
+.text5 
+{
+ height: 600px;
+}
+h 
+{
+ font-family: 'Oswald', sans-serif;
+ font-size: 1.7em;
+}
+p 
+{
+ font-family: 'EB Garamond', serif;
+ font-size: 1.3em;
+}
+#aqua 
+{
+ border-bottom: 5px solid #00FFFF;
+ text-decoration: none;
+}
+#round 
+{
+ height: 200px;
+ width: 200px;
+ border-radius: 50%;
+ float: center;
+ padding-right: 1em;
+ padding-bottom: 1em;
+}
+.column 
+{
+ width: 33.33%;
+ padding: 10px;
+ float: left;
+ height: 300px;
+}
+.row: after 
+{
+ content: ''';
+ display: table;
+ clear: both;
+}
+li 
+{
+ font-family: 'EB Garamond', serif;
+ font-size: 1.2em;
+}
+</style>
+<body>
+<div class="topnav">
+  <a href="{% url 'donate' %}">SHARE YOUR MEAL</a>
+  <div class="topnav-right">
+    <a  href="{% url 'memories' %}">MEMORIES</a>
+    <a class="active" href="#">ABOUT US</a>
+    <a href="{% url 'login' %}">LOGIN</a>
+    <a href="{% url 'register' %}">SIGNUP</a>
+  </div>
+</div>
+<br>
+<div class="parallax1"></div>
+<div class="text1">
+<h><u id="aqua">Fighting hunger today. Investing in ending hunger for good.</u></h><br><br>
+<p>As the world faces a record number of emergencies, the rate of hunger is increasing. Now, more people than ever need lifesaving food assistance. To meet this growing need, the World Food Programme requires additional resources and funding.<br><br>
+In the next 5 years, we have an ambitious goal — to share 800 million meals. To do this, we need to invest in growing our giving community. Here's how your donation will help<br>
+The largest share of donations — 62% — will be used to directly help the World Food Programme feed people in need. We will invest 28% into fundraising and marketing to grow our community so that we can help even more people. 6% will still be used to help run our organisation — from renting office space to paying salaries. The remaining 4% will continue to help cover payment fees.<br><br>
+As we grow, we’ll be able to cover our costs while increasing the amount that goes directly to hungry families. In line with WFP’s strategic plan, an average of 22% will be spent on fundraising from 2020-2030.</p></div>
+<div class="parallax2"  id="cast"></div>
+<div class="text2">
+<h><u id="aqua">OUR DONORS</u></h>
+<br>
+<br>
+<br>
+<center>
+<img src="{% static '/images/walter.jpg' %}" id="round"><img src="{% static '/images/sheldon.jpg' %}" id="round"><img src="{% static '/images/penny.jpg' %}" id="round"><img  src="{% static '/images/ms.jpg' %}"  id="round"><img src="{% static '/images/jim.jpeg' %}" id="round"><img src="{% static '/images/martha.png' %}" id="round"><img src="{% static '/images/prof.jpg' %}" id="round">
+<img src="{% static '/images/joey.jpg' %}"  id="round"><img  src="{% static '/images/peaky.jpg' %}" id="round">
+</center>
+</div>
+<div class="parallax3"></div>
+<div class="text3">
+<h><u id="aqua">Why hunger?</u></h><br><br>
+<p>There are 690 million people who do not get enough food to lead a healthy and active life. As the world continues to see an increase in conflict, climate change and economic instability, the rate of hunger is accelerating.The good news? Hunger is entirely solvable. With US$ 0.80, we can feed one child for a day and invest in helping even more children in need..</p><br><br>
+<h><u id="aqua">Videos</u></h>
+<br>
+<br>
+<iframe width="350" height="200" src="https://www.youtube.com/embed/8oCswLYXOtk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>&emsp;<iframe width="350" height="200" src="https://www.youtube.com/embed/iAeIronhI_Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<div class="parallax4"></div>
+<div class="text4">
+
+<div class="row">
+<div class="column">
+<h><u id="aqua">GIVE NOW</u></h><br><br>
+<ul>
+ <li>Children in coimbatore </li>  
+<li>Mentally retarded in coimbatore</li>
+<li>Poor families in coimbatore</li>
+ <li>Pay with Razor pay</li>
+<li>OTP verification</li>
+</ul>
+</div>
+<div class="column">
+<h><u id="aqua">PROFILE</u></h><br><br>
+<ul>
+  <li>View Profile</li>
+  <li>Edit Profile</li>
+  <li>Delete Profile</li>
+</ul>
+</div>
+<h><u id="aqua">SOCIO</u></h><br><br>
+<ul>
+  <li>Add Post</li>
+ <li>View Post</li>
+ <li>Delete Post</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="parallax5"></div>
+<div class="text5">
+<h><u id="aqua">Posters</u></h>
+<br><br>
+<h>#shareyourmeal&#10084;</h>
+<br>
+<img src="https://media.giphy.com/media/l2JhBZHmVKjnjdDbi/giphy.gif">   
+</div>
+</body>
+<html>
