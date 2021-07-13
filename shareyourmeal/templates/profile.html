@@ -1,4 +1,7 @@
 <html>
+<head>
+    <script src="https://kit.fontawesome.com/a74d0f3882.js" crossorigin="anonymous"></script>
+</head>
 <style>
 @import url('https://fonts.googleapis.com/css?family=EB+Garamond|Oswald');
 html {
@@ -58,16 +61,33 @@ color: #FFFACD;
 }
 header {
   grid-column: 1 / 3;
-  background: #008ECC;
-  color: white;
-  padding: 2rem;
-  text-align: center;
+}
+@keyframes animatedBackground {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
+}
+
+#animate-area {
+  top:0;
+  overflow:hidden;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  height: 190px;
+  background-image: url(https://davidwalsh.name/demo/bg-clouds.png);
+  background-position: 0px 0px;
+  background-repeat: repeat-x;
+  animation: animatedBackground 5s linear infinite;
 }
 nav {
   width: 100%;
   display: table;
   margin: 0 auto;
-  background-color: grey;
+  background-color: #EB167F;
   position: -webkit-sticky;
   position: sticky;
   top: 47px;
@@ -120,17 +140,19 @@ section {
 #view
 {
   height:500px;
+  background-image: linear-gradient(to left,#008ECC  ,#EB167F,#FFD700, #008ECC);
 }
 #edit
 {
   height:600px;
   background-color:#FFD700;
 }
-#delete
+#media
 {
-  height:100px;
+  height:10px;
   background-color:black;
   color:white;
+  padding-top: 2rem;
 }
 form button{
     width: 30%;
@@ -141,14 +163,27 @@ form button{
     color: black;
     font-family: 'Oswald', sans-serif;
 }
+.container2{
+    position: absolute;
+    left: 50%;
+    top: 111%;
+    transform: translate(-50%,-50%);
+    padding: 20px 25px;
+    width: 600px;
+	  height:400px;
+    color:black;
+    border-radius:50px;
+    background-color: white;
+    box-shadow: 10px 10px 10px rgba(255,255,255,.8);
+}
 .container{
     position: absolute;
     left: 50%;
-    top: 220%;
+    top: 225%;
     transform: translate(-50%,-50%);
     padding: 20px 25px;
     width: 300px;
-	  height:530px;
+	  height:500px;
     color:white;
     background-color: rgba(0,0,0,.9);
     box-shadow: 0 0 10px rgba(255,255,255,.8);
@@ -176,6 +211,45 @@ form button{
     color: black;
     font-family: 'Oswald', sans-serif;
 }
+#customers {
+  font-family: 'Oswald', sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  height:100%;
+}
+#customers td {
+  border: 0px solid #ddd;
+  padding: 8px;
+}
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+#customers tr:hover {background-color: #FFD700;}
+.social-media-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-media-icons a {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: black;
+  font-size: 22px;
+  transition: 1s;
+  background-color: rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.social-media-icons a:hover {
+  transform: translate(0, -10px);
+  transition: 1s;
+  background-color: #F7F8F9;
+}
 </style>
 <body>
 <div class="topnav">
@@ -186,21 +260,53 @@ form button{
       <a class="active" href="{% url 'profile' %}">PROFILE</a>
   </div>
 </div>
-<header>
-  <h1>PROFILE</h1>
-</header>
+<div id="animate-area">
+  <h1 style="font-size:80px; color: white;
+  text-align: center;">PROFILE</h1>
+</div>
 <nav>
   <ul>
     <li><a href="#view">View</a></li>
     <li><a href="#edit">Edit</a></li>
-    <li><a href="#delete">Delete</a></li>
+    <li><a href="#media">Media</a></li>
   </ul>
 </nav>
 <main>
   <section id="view">
   <center>
     <h1>VIEW PROFILE</h1>
-    <p>Display here</p>
+    <div class="container2">
+    <form  method="POST">
+    <table id="customers">
+   {% for t in Userreg %}
+   <tr>
+    <td>ID</td>
+    <td>{{t.id}}</td>
+    </tr>
+    <tr>
+    <td>USERNAME</td>
+    <td>{{t.username}}</td>
+    </tr>
+    <tr>
+    <td>EMAIL</td>
+    <td>{{t.email}}</td>
+    </tr>
+    <tr>
+    <td>PHONE NO</td>
+    <td>{{t.phoneno}}</td>
+    </tr>
+    <tr>
+    <td>ADDRESS</td>
+    <td>{{t.address}}</td>
+    </tr>
+    <tr>
+    <td>TYPE</td>
+    <td>{{t.type}}</td>
+    </tr>
+    {% endfor %}
+    </table>
+    </form>
+    </div>
     </center>
   </section>
   <section id="edit">
@@ -209,16 +315,16 @@ form button{
      <div class="container">
 <form method="POST">
    {% csrf_token %}
+    {% for i in Userreg %}
  <label>Name *</label><br>
- <input type="text" placeholder="Enter your name" name="username" required/><br><br>
+ <input type="text" placeholder="Enter your name" name="username" value="{{ i.username }}"  /><br><br>
  <label>email *</label><br>
- <input type="text" placeholder ="Enter your email id" name="email" required/><br><br>
+ <input type="text" placeholder ="Enter your email id" name="email" value="{{ i.email }}" /><br><br>
  <label>Mobile *</label><br>
- <input type="text" placeholder =" Enter phone number" name="phoneno"  required/><br><br>
+ <input type="text" placeholder =" Enter phone number" name="phoneno" value="{{ i.phoneno }}"  /><br><br>
  <label>Address *</label><br>
- <input type="text" placeholder ="Enter your address" name="address" required/><br><br>
- <label>Type of user *</label>&emsp;
- <input type="radio" name="type" value="donor"/>&emsp; Donor &emsp; <input type="radio" name="type" value="benefiter"/>&emsp; Benefiter <br><br>
+ <input type="text" placeholder ="Enter your address" name="address" value="{{ i.address }}" /><br><br>
+ {% endfor %}
 <button type="submit" value="submit">UPDATE PROFILE</button>
 {% if messages %}
 {% for message in messages%}
@@ -230,11 +336,15 @@ form button{
 </div>
     </center>
   </section>
-  <section id="delete">
-    <center><h1>DELETE PROFILE</h1><br>
-    <form>
-    <button type="submit" value="submit">DELETE</button>
-    </form>
+  <section id="media">
+    <center>
+      <div class="social-media-icons">
+            <a href="https://www.facebook.com/sharethemeal/" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/____.swathi._____/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/919940474009" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.youtube.com/channel/UCksI-TAGtkWdLfmwwCK1hug" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="mailto:20mx223@psgtech.ac.in" target="_blank"><i class="far fa-envelope"></i></a>
+        </div> 
     </center>
   </section>
 </main>

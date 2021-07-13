@@ -68,16 +68,12 @@ color: #FFFACD;
     padding: 20px 25px;
     width: 300px;
 	  height:700px;
-    color:white;
-    background-color: rgba(0,0,0,.9);
+    color:black;
+    background-color: rgba(255, 255, 255,.6);
     box-shadow: 0 0 10px rgba(255,255,255,.8);
 }
 body{
     height: 100vh;
-     background-image: url('{% static '/images/2054.jpg' %}');
-    background-size: cover;
-    background-position: center;
-    background-color : #626567;
     font-family: 'Oswald', sans-serif;
  }
 .container form input{
@@ -86,12 +82,12 @@ body{
     border: none;
     background-color: transparent;
     border-bottom: 2px solid 	#FFD700;
-    color: #fff;
+    color: black;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
 }
 .container label{
-    color: 	#FFFACD;
+    color: 	black;
     text-align: left;
 }
 .container form button{
@@ -102,6 +98,12 @@ body{
     font-size: 18px;
     color: black;
     font-family: 'Oswald', sans-serif;
+}
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: 130%;
+  background-color: #000000;
 }
 </style>
 <body>
@@ -114,6 +116,9 @@ body{
       <a class="active"  href="{% url 'register' %}">SIGN UP</a>
   			</div>
 </div>
+<div id="particles-js"></div>
+ <script src="{% static '/js/particle.js' %}"></script>
+  </div>
  <div class="container">
 <form method="POST">
    {% csrf_token %}
@@ -140,5 +145,117 @@ body{
 </form>
 <br><br>
 </div>
+<script>
+particlesJS("particles-js", {
+  particles: {
+    number: {
+      value: 150,
+      density: {
+        enable: true,
+        value_area: 800
+      }
+    },
+    color: {
+      value: "#FBC220"
+    },
+    shape: {
+      type: "circle",
+      stroke: {
+        width: 0,
+        color: "#000000"
+      },
+      polygon: {
+        nb_sides: 5
+      },
+      image: {
+        src: "img/github.svg",
+        width: 100,
+        height: 100
+      }
+    },
+    opacity: {
+      value: 0.5,
+      random: false,
+      anim: {
+        enable: false,
+        speed: 1,
+        opacity_min: 0.1,
+        sync: false
+      }
+    },
+    size: {
+      value: 3,
+      random: true,
+      anim: {
+        enable: false,
+        speed: 40,
+        size_min: 0.1,
+        sync: false
+      }
+    },
+    line_linked: {
+      enable: true,
+      distance: 150,
+      color: "#FBC220",
+      opacity: 0.4,
+      width: 1
+    },
+    move: {
+      enable: true,
+      speed: 6,
+      direction: "none",
+      random: false,
+      straight: false,
+      out_mode: "out",
+      bounce: false,
+      attract: {
+        enable: false,
+        rotateX: 600,
+        rotateY: 1200
+      }
+    }
+  },
+  interactivity: {
+    detect_on: "canvas",
+    events: {
+      onhover: {
+        enable: true,
+        mode: "grab"
+      },
+      onclick: {
+        enable: true,
+        mode: "push"
+      },
+      resize: true
+    },
+    modes: {
+      grab: {
+        distance: 140,
+        line_linked: {
+          opacity: 1
+        }
+      },
+      bubble: {
+        distance: 400,
+        size: 40,
+        duration: 2,
+        opacity: 8,
+        speed: 3
+      },
+      repulse: {
+        distance: 200,
+        duration: 0.4
+      },
+      push: {
+        particles_nb: 4
+      },
+      remove: {
+        particles_nb: 2
+      }
+    }
+  },
+  retina_detect: true
+});
+</script>
 </body>
 </html>
